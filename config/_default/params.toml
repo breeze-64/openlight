@@ -1,0 +1,42 @@
+mainSections = ["post", "news"]
+rssFullContent = true
+favicon        = "img/favicon.png"
+
+SortBy         = "date"
+
+[footer]
+    since      = 2026
+    customText = ""
+
+[dateFormat]
+    published   = "2006-01-02"
+    lastUpdated = "2006-01-02"
+
+[sidebar]
+    emoji    = "✨"
+    subtitle = "探索 | 记录 | 分享"
+    avatar   = "img/avatar.png"
+
+[article]
+    headingAnchor = true
+    math          = false
+    readingTime   = true
+
+    [article.license]
+        enabled = false
+        default = ""
+
+[widgets]
+    homepage = [
+        { type = "search" },
+        { type = "archives", params = { limit = 5 } },
+        { type = "categories", params = { limit = 10 } },
+    ]
+    page = [{ type = "toc" }]
+
+[colorScheme]
+    toggle  = true
+    default = "auto"
+
+[comments]
+    enabled  = false

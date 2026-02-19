@@ -1,0 +1,9 @@
+baseurl      = "https://openlight.github.io/"
+languageCode = "zh-cn"
+title        = "OpenLight"
+
+defaultContentLanguage = "zh"
+
+hasCJKLanguage = true
+
+disqusShortname = ""
