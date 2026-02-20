@@ -1,9 +1,16 @@
 baseURL: 'https://breeze-64.github.io/openlight/'
 languageCode: zh-cn
+defaultContentLanguage: zh
 title: OpenLight
 theme: PaperMod
 hasCJKLanguage: true
 paginate: 10
+
+languages:
+  zh:
+    languageName: 中文
+    title: OpenLight
+    weight: 1
 
 params:
   author:
