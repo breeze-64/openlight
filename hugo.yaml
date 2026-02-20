@@ -1,0 +1,65 @@
+baseURL: 'https://breeze-64.github.io/openlight/'
+languageCode: zh-cn
+title: OpenLight
+theme: PaperMod
+hasCJKLanguage: true
+paginate: 10
+
+params:
+  author:
+    name: OpenLight
+
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  ShowFullTextinRSS: true
+  DateFormat: "2006-01-02"
+
+  profileMode:
+    enabled: true
+    title: "OpenLight"
+    subtitle: "探索 · 记录 · 分享"
+    imageUrl: ""
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/breeze-64"
+
+  editPost:
+    URL: "https://github.com/breeze-64/openlight/tree/main/content"
+    Text: "编辑此页"
+    appendFilePath: true
+
+menu:
+  main:
+    - identifier: home
+      name: 首页
+      url: /
+      weight: 1
+    - identifier: posts
+      name: 博客
+      url: /posts/
+      weight: 2
+    - identifier: news
+      name: 新闻
+      url: /news/
+      weight: 3
+    - identifier: archives
+      name: 归档
+      url: /archives/
+      weight: 4
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 5
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON

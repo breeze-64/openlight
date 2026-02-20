@@ -1,9 +1,0 @@
-baseurl      = "https://breeze-64.github.io/openlight/"
-languageCode = "zh-cn"
-title        = "OpenLight"
-
-defaultContentLanguage = "zh"
-
-hasCJKLanguage = true
-
-disqusShortname = ""
