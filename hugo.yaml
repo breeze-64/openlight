@@ -13,8 +13,7 @@ languages:
     weight: 1
 
 params:
-  author:
-    name: OpenLight
+  author: OpenLight
 
   defaultTheme: auto
   ShowReadingTime: true
@@ -44,29 +43,37 @@ params:
 
 menu:
   main:
-    - identifier: home
-      name: 首页
-      url: /
-      weight: 1
     - identifier: posts
       name: 博客
       url: /posts/
-      weight: 2
+      weight: 1
     - identifier: news
       name: 新闻
       url: /news/
-      weight: 3
+      weight: 2
     - identifier: archives
       name: 归档
       url: /archives/
-      weight: 4
+      weight: 3
     - identifier: search
       name: 搜索
       url: /search/
-      weight: 5
+      weight: 4
+
+outputFormats:
+  RSS:
+    mediatype: "application/rss+xml"
+    baseName: "feed"
+    isHTML: false
 
 outputs:
   home:
     - HTML
-    - RSS
     - JSON
+    - RSS
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+  term:
+    - HTML
