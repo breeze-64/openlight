@@ -25,12 +25,6 @@
     </div>
   </header>
 
-  <div class="news-toc-wrapper">
-    {{- if (.Param "ShowToc") }}
-    {{- partial "toc.html" . }}
-    {{- end }}
-  </div>
-
   {{- if .Content }}
   <div class="post-content news-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
@@ -55,5 +49,77 @@
     {{- end }}
   </footer>
 </article>
+
+<script>
+(function () {
+  const content = document.querySelector('.news-content');
+  if (!content) return;
+
+  const h2s = Array.from(content.querySelectorAll('h2'));
+  if (h2s.length < 2) return;
+
+  // --- 1. 收集每个 Tab 的内容节点 ---
+  const sections = h2s.map((h2, i) => {
+    const nodes = [];
+    let el = h2.nextElementSibling;
+    const nextH2 = h2s[i + 1];
+    while (el && el !== nextH2) {
+      nodes.push(el);
+      el = el.nextElementSibling;
+    }
+    return { h2, nodes, label: h2.textContent.trim() };
+  });
+
+  // --- 2. 构建 Tab 导航栏 ---
+  const nav = document.createElement('div');
+  nav.className = 'news-tabs-nav';
+
+  sections.forEach((sec, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'news-tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = sec.label;
+    btn.dataset.index = i;
+    btn.addEventListener('click', () => switchTab(i));
+    nav.appendChild(btn);
+    sec.btn = btn;
+  });
+
+  // --- 3. 包裹每个 section 进 panel div ---
+  sections.forEach((sec, i) => {
+    const panel = document.createElement('div');
+    panel.className = 'news-tab-panel' + (i === 0 ? ' active' : '');
+    panel.dataset.index = i;
+
+    // 把 h2 和 nodes 都移进 panel
+    panel.appendChild(sec.h2.cloneNode(true));
+    sec.nodes.forEach(n => panel.appendChild(n.cloneNode(true)));
+    sec.panel = panel;
+  });
+
+  // --- 4. 清空 content，插入 nav + panels ---
+  content.innerHTML = '';
+  content.appendChild(nav);
+  sections.forEach(sec => content.appendChild(sec.panel));
+
+  // --- 5. 切换逻辑 ---
+  function switchTab(idx) {
+    sections.forEach((sec, i) => {
+      const active = i === idx;
+      sec.btn.classList.toggle('active', active);
+      sec.panel.classList.toggle('active', active);
+    });
+    // 滚动 nav 让选中 tab 可见
+    sections[idx].btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  // --- 6. 键盘左右箭头切换 ---
+  nav.addEventListener('keydown', e => {
+    const btns = Array.from(nav.querySelectorAll('.news-tab-btn'));
+    const cur = btns.findIndex(b => b.classList.contains('active'));
+    if (e.key === 'ArrowRight') switchTab((cur + 1) % btns.length);
+    if (e.key === 'ArrowLeft') switchTab((cur - 1 + btns.length) % btns.length);
+  });
+})();
+</script>
 
 {{- end }}
