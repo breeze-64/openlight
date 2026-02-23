@@ -1,0 +1,59 @@
+{{- define "main" }}
+
+<article class="post-single news-single">
+  <header class="news-header">
+    <div class="news-header-inner">
+      <div class="news-badge">每日简报</div>
+      <h1 class="news-title">{{ .Title }}</h1>
+      {{- if .Description }}
+      <p class="news-description">{{ .Description }}</p>
+      {{- end }}
+      <div class="news-meta">
+        <span class="news-meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          {{ .Date.Format "2006年1月2日" }}
+        </span>
+        <span class="news-meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          约 {{ .ReadingTime }} 分钟阅读
+        </span>
+        <span class="news-meta-item news-sources">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          Tavily · HN · Reddit · GitHub · HuggingFace
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="news-toc-wrapper">
+    {{- if (.Param "ShowToc") }}
+    {{- partial "toc.html" . }}
+    {{- end }}
+  </div>
+
+  {{- if .Content }}
+  <div class="post-content news-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  <footer class="post-footer news-footer">
+    <div class="news-footer-inner">
+      <span>数据来源：Tavily · Hacker News · Reddit · GitHub · HuggingFace Papers · trends24.in</span>
+      <a href="/news/" class="news-back-link">← 查看所有新闻</a>
+    </div>
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- if (.Param "ShowPostNavLinks") }}
+    {{- partial "post_nav_links.html" . }}
+    {{- end }}
+  </footer>
+</article>
+
+{{- end }}

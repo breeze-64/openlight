@@ -1,0 +1,315 @@
+/* =========================================
+   OpenLight · 每日简报 · 设计系统
+   ========================================= */
+
+/* ---------- Header ---------- */
+.news-header {
+  background: linear-gradient(135deg, var(--theme) 0%, #1a1a2e 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.news-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.news-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 3px 14px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 1rem;
+}
+
+.news-title {
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  margin: 0.5rem 0 0.75rem !important;
+  line-height: 1.3 !important;
+  border: none !important;
+}
+
+.news-description {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0 0 1.25rem;
+  line-height: 1.6;
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+}
+
+.news-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ---------- Content layout ---------- */
+.news-content {
+  max-width: 100%;
+}
+
+/* ---------- Section headers (h2) → Section cards ---------- */
+.news-content h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem !important;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem !important;
+  padding: 0.65rem 1.1rem !important;
+  border-radius: 10px;
+  border: none !important;
+  background: var(--code-bg);
+  border-left: 4px solid var(--primary) !important;
+  color: var(--primary) !important;
+  letter-spacing: 0.01em;
+}
+
+.news-content h2::after {
+  content: none !important;
+}
+
+/* ---------- Top-level list items → News items ---------- */
+.news-content > ul,
+.news-content > ol {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 0.5rem !important;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.news-content > ul > li,
+.news-content > ol > li {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  line-height: 1.6;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  list-style: none !important;
+}
+
+.news-content > ul > li:hover,
+.news-content > ol > li:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* Main link in each news item */
+.news-content > ul > li > p:first-child > strong > a,
+.news-content > ul > li > p:first-child > a,
+.news-content > ul > li > a:first-child {
+  font-weight: 600 !important;
+  font-size: 0.95rem;
+  color: var(--primary) !important;
+  text-decoration: none !important;
+}
+
+.news-content > ul > li > p:first-child > strong > a:hover,
+.news-content > ul > li > p:first-child > a:hover {
+  text-decoration: underline !important;
+}
+
+/* ---------- Nested lists → Detail rows ---------- */
+.news-content > ul > li > ul,
+.news-content > ol > li > ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0.6rem 0 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.news-content > ul > li > ul > li,
+.news-content > ol > li > ul > li {
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 0.845rem;
+  color: var(--secondary);
+  line-height: 1.55;
+  display: flex;
+  gap: 0.4rem;
+  box-shadow: none !important;
+}
+
+.news-content > ul > li > ul > li::before {
+  content: '›';
+  color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.news-content > ul > li > ul > li strong {
+  color: var(--content);
+  font-weight: 600;
+}
+
+/* ---------- Ordered list numbers styling ---------- */
+.news-content > ol {
+  counter-reset: news-counter;
+}
+
+.news-content > ol > li {
+  counter-increment: news-counter;
+  position: relative;
+  padding-left: 1.1rem !important;
+}
+
+/* ---------- Blockquotes ---------- */
+.news-content blockquote {
+  border-left: 3px solid var(--primary);
+  background: var(--code-bg);
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 1rem;
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+  color: var(--secondary);
+}
+
+.news-content blockquote p {
+  margin: 0;
+}
+
+/* ---------- Source badges (em at end of nested li) ---------- */
+.news-content > ul > li > ul > li em {
+  color: var(--secondary);
+  font-style: normal;
+  opacity: 0.8;
+}
+
+/* Inline code used as tags/badges */
+.news-content code {
+  background: var(--code-bg);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 0.8rem;
+}
+
+/* ---------- Italic sub-headers (like _X 热议：_) ---------- */
+.news-content > ul > li > p > em,
+.news-content p > em {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-style: normal;
+  margin-bottom: 0.4rem;
+}
+
+/* ---------- Horizontal rule → Section divider ---------- */
+.news-content hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 2.5rem 0 1rem;
+}
+
+/* ---------- Footer ---------- */
+.news-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--secondary);
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.news-back-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.news-back-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- News list page ---------- */
+.news-list-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* ---------- Dark mode tweaks ---------- */
+.dark .news-header {
+  background: linear-gradient(135deg, #1e1e2e 0%, #0f0f1a 100%);
+}
+
+.dark .news-content > ul > li,
+.dark .news-content > ol > li {
+  background: rgba(255,255,255,0.03);
+}
+
+.dark .news-content > ul > li:hover,
+.dark .news-content > ol > li:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .news-header {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .news-meta {
+    gap: 0.75rem;
+  }
+
+  .news-meta-item.news-sources {
+    display: none;
+  }
+
+  .news-content h2 {
+    font-size: 0.95rem !important;
+    padding: 0.55rem 0.9rem !important;
+  }
+
+  .news-content > ul > li,
+  .news-content > ol > li {
+    padding: 0.85rem 0.9rem;
+    border-radius: 10px;
+  }
+
+  .news-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
