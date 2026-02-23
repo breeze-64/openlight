@@ -1,307 +1,273 @@
 /* =========================================
-   OpenLight · 每日简报 · 设计系统
+   OpenLight · 每日简报 · 设计系统 v2
    ========================================= */
-
-/* ---------- Tab 导航栏 ---------- */
-.news-tabs-nav {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 4px 2px 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--border);
-  position: sticky;
-  top: 60px;
-  background: var(--theme);
-  z-index: 10;
-}
-
-.news-tabs-nav::-webkit-scrollbar { display: none; }
-
-.news-tab-btn {
-  flex-shrink: 0;
-  padding: 7px 14px;
-  border: none;
-  border-radius: 8px 8px 0 0;
-  background: transparent;
-  color: var(--secondary);
-  font-size: 0.82rem;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.15s, background 0.15s;
-  position: relative;
-  bottom: -2px;
-  border-bottom: 2px solid transparent;
-  font-family: inherit;
-}
-
-.news-tab-btn:hover {
-  color: var(--primary);
-  background: var(--code-bg);
-}
-
-.news-tab-btn.active {
-  color: var(--primary);
-  font-weight: 700;
-  border-bottom: 2px solid var(--primary);
-  background: var(--code-bg);
-}
-
-/* ---------- Tab 面板 ---------- */
-.news-tab-panel {
-  display: none;
-  animation: tabFadeIn 0.18s ease;
-}
-
-.news-tab-panel.active {
-  display: block;
-}
-
-@keyframes tabFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* 暗色模式下 sticky 背景 */
-.dark .news-tabs-nav {
-  background: var(--theme);
-}
-
 
 /* ---------- Header ---------- */
 .news-header {
-  background: linear-gradient(135deg, var(--theme) 0%, #1a1a2e 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 16px;
   padding: 2.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0;
   color: #fff;
   position: relative;
   overflow: hidden;
 }
-
 .news-header::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
   pointer-events: none;
 }
-
 .news-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(99,102,241,0.25);
+  border: 1px solid rgba(99,102,241,0.5);
   border-radius: 20px;
   padding: 3px 14px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
+  color: #a5b4fc;
   margin-bottom: 1rem;
 }
-
 .news-title {
-  font-size: clamp(1.5rem, 3vw, 2rem) !important;
-  font-weight: 700 !important;
+  font-size: clamp(1.4rem, 3vw, 1.9rem) !important;
+  font-weight: 800 !important;
   color: #fff !important;
-  margin: 0.5rem 0 0.75rem !important;
+  margin: 0.4rem 0 0.75rem !important;
   line-height: 1.3 !important;
   border: none !important;
 }
-
 .news-description {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.75);
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
   margin: 0 0 1.25rem;
   line-height: 1.6;
 }
-
 .news-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.65);
+  gap: 1.2rem;
+  font-size: 0.775rem;
+  color: rgba(255,255,255,0.5);
 }
-
 .news-meta-item {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-/* ---------- Content layout ---------- */
-.news-content {
-  max-width: 100%;
-}
-
-/* ---------- Section headers (h2) → Section cards ---------- */
-.news-content h2 {
+/* ---------- Tab 导航栏 ---------- */
+.news-tabs-nav {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.05rem !important;
-  font-weight: 700;
-  margin: 2.5rem 0 1rem !important;
-  padding: 0.65rem 1.1rem !important;
-  border-radius: 10px;
-  border: none !important;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
   background: var(--code-bg);
-  border-left: 4px solid var(--primary) !important;
-  color: var(--primary) !important;
-  letter-spacing: 0.01em;
+  border-radius: 0 0 12px 12px;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+.news-tabs-nav::-webkit-scrollbar { display: none; }
+
+.news-tab-btn {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: var(--secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  position: relative;
+  font-family: inherit;
+}
+.news-tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 16px; right: 16px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px 2px 0 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.news-tab-btn:hover { color: var(--primary); background: rgba(99,102,241,0.06); }
+.news-tab-btn.active { color: var(--primary); font-weight: 700; }
+.news-tab-btn.active::after { opacity: 1; }
+
+/* ---------- Tab 面板 ---------- */
+.news-tab-panel { display: none; }
+.news-tab-panel.active {
+  display: block;
+  animation: tabIn 0.2s ease;
+}
+@keyframes tabIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.news-content h2::after {
-  content: none !important;
+/* ---------- 隐藏 panel 内的 h2（Tab 按钮已代替） ---------- */
+.news-tab-panel > h2 {
+  display: none;
 }
 
-/* ---------- Top-level list items → News items ---------- */
-.news-content > ul,
-.news-content > ol {
+/* =====================================================
+   核心：新闻条目卡片样式
+   目标：.news-content 下任意深度的 top-level li（含子ul的）
+   ===================================================== */
+
+/* 重置所有 ul/ol */
+.news-content ul,
+.news-content ol {
   list-style: none !important;
   padding: 0 !important;
-  margin: 0 0 0.5rem !important;
-  display: grid;
-  gap: 0.85rem;
+  margin: 0 !important;
 }
 
-.news-content > ul > li,
-.news-content > ol > li {
+/* 有子 ul 的 li = 新闻卡片 */
+.news-content li:has(> ul),
+.news-content li:has(> p + ul) {
   background: var(--entry);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem 1.1rem;
-  line-height: 1.6;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  list-style: none !important;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.1rem 0.9rem;
+  margin-bottom: 0.7rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.news-content li:has(> ul):hover,
+.news-content li:has(> p + ul):hover {
+  box-shadow: 0 3px 16px rgba(0,0,0,0.1);
+  border-left-color: #6366f1;
 }
 
-.news-content > ul > li:hover,
-.news-content > ol > li:hover {
-  border-color: var(--primary);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+/* 卡片标题行（第一个 p） */
+.news-content li > p:first-child {
+  margin: 0 0 0.6rem !important;
+  line-height: 1.5;
 }
-
-/* Main link in each news item */
-.news-content > ul > li > p:first-child > strong > a,
-.news-content > ul > li > p:first-child > a,
-.news-content > ul > li > a:first-child {
-  font-weight: 600 !important;
+.news-content li > p:first-child > strong > a,
+.news-content li > p:first-child > a {
+  font-weight: 700 !important;
   font-size: 0.95rem;
   color: var(--primary) !important;
   text-decoration: none !important;
+  line-height: 1.45;
 }
-
-.news-content > ul > li > p:first-child > strong > a:hover,
-.news-content > ul > li > p:first-child > a:hover {
+.news-content li > p:first-child > strong > a:hover {
   text-decoration: underline !important;
 }
 
-/* ---------- Nested lists → Detail rows ---------- */
-.news-content > ul > li > ul,
-.news-content > ol > li > ul {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0.6rem 0 0 !important;
+/* Star 增量 / 简单一行描述（没有子ul的li） */
+.news-content li:not(:has(> ul)) {
+  padding: 0.65rem 0.9rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  background: var(--code-bg);
+  font-size: 0.875rem;
+  color: var(--content);
+}
+
+/* 子 ul = 详情行容器 */
+.news-content li > ul {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
+  margin-top: 0 !important;
 }
 
-.news-content > ul > li > ul > li,
-.news-content > ol > li > ul > li {
-  background: none !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-  font-size: 0.845rem;
+/* 详情行（核心要点 / 关键细节 / 来源） */
+.news-content li > ul > li {
+  display: flex !important;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.835rem;
   color: var(--secondary);
   line-height: 1.55;
-  display: flex;
-  gap: 0.4rem;
-  box-shadow: none !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
 }
 
-.news-content > ul > li > ul > li::before {
-  content: '›';
-  color: var(--primary);
-  font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.news-content > ul > li > ul > li strong {
-  color: var(--content);
+/* 详情行 label（强调文字） */
+.news-content li > ul > li > p > strong,
+.news-content li > ul > li > strong {
   font-weight: 600;
+  color: var(--content);
+  white-space: nowrap;
 }
 
-/* ---------- Ordered list numbers styling ---------- */
-.news-content > ol {
-  counter-reset: news-counter;
+/* 来源行特殊样式（最后一个详情行） */
+.news-content li > ul > li:last-child {
+  opacity: 0.7;
+  font-size: 0.8rem;
 }
 
-.news-content > ol > li {
-  counter-increment: news-counter;
-  position: relative;
-  padding-left: 1.1rem !important;
+/* ---------- 第一层 li 右侧小标签（星星/热度） ---------- */
+.news-content li > p:first-child > strong {
+  color: inherit;
+  font-weight: 700;
 }
 
-/* ---------- Blockquotes ---------- */
+/* ---------- h2 section header（无 Tab 时显示） ---------- */
+.news-content > h2,
+.news-tab-panel.active > h2 {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem !important;
+  font-weight: 700;
+  margin: 2rem 0 1rem !important;
+  padding: 0.6rem 1rem !important;
+  border-radius: 8px;
+  border: none !important;
+  background: var(--code-bg);
+  border-left: 3px solid var(--primary) !important;
+  color: var(--primary) !important;
+}
+.news-tab-panel.active > h2 {
+  display: none; /* tab 模式下隐藏 */
+}
+
+/* ---------- h3（子章节，如 "X 热议" "火爆开源"） ---------- */
+.news-content h3 {
+  font-size: 0.85rem !important;
+  font-weight: 700;
+  color: var(--secondary) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 1.25rem 0 0.6rem !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* ---------- blockquote（来源说明） ---------- */
 .news-content blockquote {
-  border-left: 3px solid var(--primary);
+  border-left: 3px solid var(--border);
   background: var(--code-bg);
   border-radius: 0 8px 8px 0;
-  padding: 0.75rem 1rem;
-  margin: 0.75rem 0;
-  font-size: 0.875rem;
+  padding: 0.6rem 1rem;
+  margin: 0 0 1rem;
+  font-size: 0.825rem;
   color: var(--secondary);
 }
+.news-content blockquote p { margin: 0; }
 
-.news-content blockquote p {
-  margin: 0;
-}
-
-/* ---------- Source badges (em at end of nested li) ---------- */
-.news-content > ul > li > ul > li em {
-  color: var(--secondary);
-  font-style: normal;
-  opacity: 0.8;
-}
-
-/* Inline code used as tags/badges */
-.news-content code {
-  background: var(--code-bg);
-  border-radius: 5px;
-  padding: 1px 6px;
-  font-size: 0.8rem;
-}
-
-/* ---------- Italic sub-headers (like _X 热议：_) ---------- */
-.news-content > ul > li > p > em,
-.news-content p > em {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-style: normal;
-  margin-bottom: 0.4rem;
-}
-
-/* ---------- Horizontal rule → Section divider ---------- */
+/* ---------- hr ---------- */
 .news-content hr {
   border: none;
   height: 1px;
   background: var(--border);
-  margin: 2.5rem 0 1rem;
+  margin: 2rem 0;
 }
 
 /* ---------- Footer ---------- */
@@ -311,73 +277,33 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--secondary);
   padding: 1rem 0;
   border-top: 1px solid var(--border);
   margin-bottom: 1rem;
 }
-
 .news-back-link {
   color: var(--primary);
   text-decoration: none;
   font-weight: 500;
 }
+.news-back-link:hover { text-decoration: underline; }
 
-.news-back-link:hover {
-  text-decoration: underline;
-}
-
-/* ---------- News list page ---------- */
-.news-list-item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-/* ---------- Dark mode tweaks ---------- */
-.dark .news-header {
-  background: linear-gradient(135deg, #1e1e2e 0%, #0f0f1a 100%);
-}
-
-.dark .news-content > ul > li,
-.dark .news-content > ol > li {
+/* ---------- 暗色模式 ---------- */
+.dark .news-content li:has(> ul),
+.dark .news-content li:has(> p + ul) {
   background: rgba(255,255,255,0.03);
 }
-
-.dark .news-content > ul > li:hover,
-.dark .news-content > ol > li:hover {
+.dark .news-content li:has(> ul):hover {
   background: rgba(255,255,255,0.05);
+  box-shadow: 0 3px 16px rgba(0,0,0,0.3);
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- 响应式 ---------- */
 @media (max-width: 640px) {
-  .news-header {
-    padding: 1.5rem;
-    border-radius: 12px;
-  }
-
-  .news-meta {
-    gap: 0.75rem;
-  }
-
-  .news-meta-item.news-sources {
-    display: none;
-  }
-
-  .news-content h2 {
-    font-size: 0.95rem !important;
-    padding: 0.55rem 0.9rem !important;
-  }
-
-  .news-content > ul > li,
-  .news-content > ol > li {
-    padding: 0.85rem 0.9rem;
-    border-radius: 10px;
-  }
-
-  .news-footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .news-header { padding: 1.5rem; border-radius: 12px; }
+  .news-meta-item.news-sources { display: none; }
+  .news-tab-btn { padding: 9px 12px; font-size: 0.75rem; }
+  .news-content li:has(> ul) { padding: 0.85rem 0.9rem 0.75rem; }
 }
